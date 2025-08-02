@@ -1,0 +1,1 @@
+a project to showcase Redux and fastapi
