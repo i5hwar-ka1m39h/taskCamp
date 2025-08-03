@@ -1,4 +1,4 @@
-from sqlalchemy import String, Integer, ForeignKey , DateTime, Text
+from sqlalchemy import String, ForeignKey , DateTime, Text
 from sqlalchemy.orm import mapped_column, Mapped, relationship 
 from datetime import datetime
 from typing import Annotated, List, Optional
@@ -21,7 +21,7 @@ class User(Base):
     imageUrl: Mapped[str]= mapped_column(String(255), nullable=True)
     created_At: timestamp
 
-    tasks: Mapped[List["Task"]] = relationship("Task", back_populates="owner")
+    tasks: Mapped[List["Task"]] = relationship("Task", back_populates="owner", cascade="all, delete-orphan")
 
 class Task(Base):
     __tablename__= "tasks"
